@@ -17,7 +17,9 @@
             {% with messages = get_flashed_messages() %}
             {% if messages %}
               {% for message in messages %}
+                {% if message != "Invalid Email/Password"%}
                   <p>{{message}}</p>
+                {% endif %}  
               {% endfor %}
             {% endif %}
           {% endwith %}
@@ -37,6 +39,15 @@
         </div>
         <div class="bg-dark text-white p-4 col-4">
             <p class="text-success font-size"><strong>Login</strong></p>
+            {% with messagesOne = get_flashed_messages() %}
+            {% if messagesOne %}
+              {% for message in messagesOne %}
+              {% if message == "Invalid Email/Password"%}
+                <p>{{message}}</p>
+              {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
             <form action="/login" method="POST" class="form-group d-flex flex-column">
                 <label for="email">Email:</label>
                 <input name="email" type="text">
